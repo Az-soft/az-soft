@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Code, Smartphone, MessageSquare, Database, Layout } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
