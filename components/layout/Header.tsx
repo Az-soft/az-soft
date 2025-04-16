@@ -12,7 +12,6 @@ const navigation = [
   { name: 'Услуги', href: '/services' },
   { name: 'О компании', href: '/about' },
   { name: 'Портфолио', href: '/portfolio' },
-  { name: 'Блог', href: '/blog' },
   { name: 'Контакты', href: '/contact' },
 ]
 
