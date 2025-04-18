@@ -1,23 +1,12 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
 
-const navigation = {
-  main: [
-    { name: 'Главная', href: '/' },
-    { name: 'Услуги', href: '/services' },
-    { name: 'О компании', href: '/about' },
-    { name: 'Портфолио', href: '/portfolio' },
-    { name: 'Контакты', href: '/contact' },
-  ],
-  services: [
-    { name: 'Веб-разработка', href: '/services#web' },
-    { name: 'Мобильные приложения', href: '/services#mobile' },
-    { name: 'Чат-боты', href: '/services#chatbots' },
-    { name: 'CRM-системы', href: '/services#crm' },
-    { name: 'UI/UX дизайн', href: '/services#design' },
-    { name: 'IT-консалтинг', href: '/services#consulting' },
-  ],
-}
+const navigation = [
+  { name: 'Главная', href: '/' },
+  { name: 'О компании', href: '/about' },
+  { name: 'Портфолио', href: '/portfolio' },
+  { name: 'Контакты', href: '/contact' },
+]
 
 const contactInfo = [
   {
@@ -37,63 +26,79 @@ const contactInfo = [
   },
 ]
 
+const socialLinks = [
+  {
+    icon: Github,
+    href: 'https://github.com',
+    label: 'GitHub',
+  },
+  {
+    icon: Linkedin,
+    href: 'https://linkedin.com',
+    label: 'LinkedIn',
+  },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-background border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          <div>
-            <h3 className="text-lg font-semibold">AZ Soft</h3>
-            <p className="mt-4 text-sm text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Company Info - Left */}
+          <div className="flex flex-col gap-6 md:justify-self-start">
+            <h3 className="text-xl font-bold">AZ Soft</h3>
+            <p className="text-muted-foreground">
               Профессиональные IT-решения для вашего бизнеса. Разработка веб-приложений,
               мобильных приложений, чат-ботов, CRM-систем, UI/UX дизайн и IT-консалтинг.
             </p>
+            <div className="flex gap-4">
+              {socialLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <item.icon className="h-5 w-5" />
+                  <span className="sr-only">{item.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
 
-          <div>
+          {/* Navigation - Center */}
+          <div className="flex flex-col gap-6 md:justify-self-center">
             <h3 className="text-lg font-semibold">Навигация</h3>
-            <ul className="mt-4 space-y-2">
-              {navigation.main.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted-foreground hover:text-primary"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
+            <nav className="flex flex-col gap-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </Link>
               ))}
-            </ul>
+            </nav>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold">Услуги</h3>
-            <ul className="mt-4 space-y-2">
-              {navigation.services.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted-foreground hover:text-primary"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
+          {/* Contacts - Right */}
+          <div className="flex flex-col gap-6 md:justify-self-end">
+            <h3 className="text-lg font-semibold">Контакты</h3>
+            <div className="flex flex-col gap-3">
+              {contactInfo.map((item) => (
+                <a
+                  key={item.text}
+                  href={item.href}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <item.icon className="h-4 w-4" />
+                  <span>{item.text}</span>
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
-        </div>
-
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {contactInfo.map((item) => (
-            <a
-              key={item.text}
-              href={item.href}
-              className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary"
-            >
-              <item.icon className="h-4 w-4" />
-              <span>{item.text}</span>
-            </a>
-          ))}
         </div>
 
         <div className="mt-12 border-t pt-8">

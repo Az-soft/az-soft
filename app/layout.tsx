@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={inter.className}>
+        <div className="grid-background" />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
