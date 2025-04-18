@@ -9,9 +9,9 @@ import { useTheme } from 'next-themes'
 
 const navigation = [
   { name: 'Главная', href: '/' },
-  { name: 'Услуги', href: '/services' },
-  { name: 'О компании', href: '/about' },
-  { name: 'Контакты', href: '/contact' },
+  { name: 'Услуги', href: '/#services' },
+  { name: 'О компании', href: '/#about' },
+  { name: 'Контакты', href: '/#contact' },
 ]
 
 export default function Header() {
