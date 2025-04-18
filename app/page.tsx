@@ -184,7 +184,7 @@ export default function Home() {
               по разработке программного обеспечения, дизайну и консалтингу.
             </p>
             <div className="mt-10 flex gap-4">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="gradient-border-btn">
                 <Link href="#contact">
                   Связаться с нами
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -240,7 +240,7 @@ export default function Home() {
                         </div>
                       ))}
                     </div>
-                    <Button asChild variant="outline">
+                    <Button asChild size="lg" className="gradient-border-btn">
                       <Link href="#contact">
                         Обсудить проект
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -268,8 +268,9 @@ export default function Home() {
               О компании
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              AZ Soft - это команда профессионалов, которая помогает бизнесу расти с
-              помощью современных IT-решений.
+            AZ Soft — это молодая и амбициозная команда, объединённая стремлением создавать
+            современные IT-решения. Мы строим партнёрские отношения с клиентами и подходим к каждому
+            проекту с максимальной вовлечённостью и вниманием к деталям.
             </p>
           </motion.div>
 

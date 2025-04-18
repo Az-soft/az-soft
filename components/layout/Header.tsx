@@ -36,7 +36,7 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
+              className={`nav-link text-sm font-medium ${
                 pathname === item.href ? 'text-primary' : 'text-foreground/60'
               }`}
             >
@@ -48,17 +48,22 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="rounded-full p-2 hover:bg-accent"
+            className="btn-hover rounded-full p-2 hover:bg-accent/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+            aria-label="Toggle theme"
           >
-            {mounted && (theme === 'dark' ? (
-              <Sun className="h-5 w-5" />
+            {mounted ? (
+              theme === 'dark' ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )
             ) : (
-              <Moon className="h-5 w-5" />
-            ))}
+              <div className="h-5 w-5" />
+            )}
           </button>
 
           <button
-            className="md:hidden"
+            className="btn-hover md:hidden rounded-md p-2 hover:bg-accent/50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -84,10 +89,10 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className={`block rounded-md px-3 py-2 text-base font-medium ${
+              className={`nav-link block rounded-md px-3 py-2 text-base font-medium ${
                 pathname === item.href
                   ? 'bg-accent text-accent-foreground'
-                  : 'text-foreground/60 hover:bg-accent hover:text-accent-foreground'
+                  : 'text-foreground/60 hover:bg-accent/50 hover:text-accent-foreground'
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
