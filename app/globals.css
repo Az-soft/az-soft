@@ -153,10 +153,14 @@ body::before {
   z-index: 1;
   padding: 0.75rem 1.5rem;
   font-weight: bold;
-  color: white;
+  color: hsl(0, 0%, 0%);
   border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.dark .gradient-border-btn {
+  color: hsl(0, 0%, 100%);
 }
 
 .gradient-border-btn::before {
@@ -189,4 +193,77 @@ body::before {
 .gradient-border-btn:hover {
   transform: scale(1.03) translateY(-3px);
   box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+}
+
+/* Service Card Animations */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+.service-card__title {
+  position: relative;
+  display: inline-block;
+}
+
+.service-card__title::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+  width: calc(100% + 4rem);
+  height: 1.5rem;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)/0.5));
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
+  z-index: -1;
+}
+
+
+.service-card__description {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.service-card.in-view .service-card__description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card__features {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.service-card.in-view .service-card__features {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card__button {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
+}
+
+.service-card.in-view .service-card__button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card__icon {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.service-card.in-view .service-card__icon {
+  transform: scale(1.1);
 }

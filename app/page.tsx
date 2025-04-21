@@ -1,10 +1,11 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight, Code, Smartphone, MessageSquare, Database, Layout, Users, Mail, Phone, MapPin, Clock, Award, Heart, Target } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
+import { useRef, useEffect } from 'react'
 
 const services = [
   {
@@ -165,6 +166,9 @@ const contactInfo = [
 ]
 
 export default function Home() {
+  const servicesRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(servicesRef, { once: true, margin: "-100px" })
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -196,24 +200,24 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-muted/50">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
               Наши услуги
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Комплексные IT-решения для развития вашего бизнеса
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Мы предлагаем комплексные IT-решения для вашего бизнеса
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-12">
+          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -221,26 +225,27 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-background rounded-lg shadow-sm p-8"
+                className={`service-card group relative bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/50 ${isInView ? 'in-view' : ''}`}
               >
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="rounded-full bg-primary/10 p-4 w-16 h-16 flex items-center justify-center">
-                      <service.icon className="h-8 w-8 text-primary" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="service-card__content relative z-10">
+                  <div className="mb-6">
+                    <div className="service-card__icon w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center transition-transform duration-300">
+                      <service.icon className="h-6 w-6 text-primary" />
                     </div>
                   </div>
-                  <div className="flex-grow">
-                    <h2 className="text-2xl font-semibold mb-4">{service.title}</h2>
-                    <p className="text-muted-foreground mb-6">{service.description}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                      {service.features.map((feature) => (
-                        <div key={feature} className="flex items-start space-x-2">
-                          <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2" />
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button asChild size="lg" className="gradient-border-btn">
+                  <h3 className="service-card__title text-xl font-semibold mb-4">{service.title}</h3>
+                  <p className="service-card__description text-muted-foreground mb-6">{service.description}</p>
+                  <ul className="service-card__features space-y-3 mb-8">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-start space-x-2">
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2" />
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="service-card__button">
+                    <Button asChild size="lg" className="gradient-border-btn w-full">
                       <Link href="#contact">
                         Обсудить проект
                         <ArrowRight className="ml-2 h-4 w-4" />
