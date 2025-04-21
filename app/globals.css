@@ -212,10 +212,15 @@ body::before {
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+  border: 1px solid transparent;
+  background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+              linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)) border-box;
 }
 
 .dark .service-card__inner {
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(hsl(0, 0%, 0%), hsl(0, 0%, 0%)) padding-box,
+              linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)) border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .service-card:hover .service-card__inner {
@@ -235,12 +240,16 @@ body::before {
   justify-content: center;
   padding: 2rem;
   border-radius: 12px;
-  background: hsl(var(--card));
+  background: transparent;
 }
 
 .service-card__back {
   transform: rotateY(180deg);
-  background: hsl(var(--card));
+}
+
+.dark .service-card__front,
+.dark .service-card__back {
+  background: transparent;
 }
 
 .service-card__title {
