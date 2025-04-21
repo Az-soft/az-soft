@@ -198,65 +198,82 @@ body::before {
 /* Service Card Animations */
 .service-card {
   position: relative;
-  overflow: hidden;
+  perspective: 1000px;
+  height: 400px; /* Increased height to accommodate content */
+  width: 100%;
 }
 
-.service-card__content {
+.service-card__inner {
   position: relative;
-  z-index: 2;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.dark .service-card__inner {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.service-card:hover .service-card__inner {
+  transform: rotateY(180deg);
+}
+
+.service-card__front,
+.service-card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: hsl(var(--card));
+}
+
+.service-card__back {
+  transform: rotateY(180deg);
+  background: hsl(var(--card));
 }
 
 .service-card__title {
-  position: relative;
-  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: hsl(var(--card-foreground));
+  margin: 0;
+  line-height: 1.4;
 }
-
-.service-card__title::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -2rem;
-  width: calc(100% + 4rem);
-  height: 1.5rem;
-  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary)/0.5));
-  transform: scaleX(0);
-  transform-origin: 100% 50%;
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-  z-index: -1;
-}
-
 
 .service-card__description {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.service-card.in-view .service-card__description {
-  opacity: 1;
-  transform: translateY(0);
+  color: hsl(var(--card-foreground));
+  margin: 1rem 0;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .service-card__features {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+  margin: 1rem 0;
+  color: hsl(var(--card-foreground));
+  text-align: left;
+  width: 100%;
 }
 
-.service-card.in-view .service-card__features {
-  opacity: 1;
-  transform: translateY(0);
+.service-card__features li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .service-card__button {
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s;
-}
-
-.service-card.in-view .service-card__button {
-  opacity: 1;
-  transform: translateY(0);
+  margin-top: auto;
+  width: 100%;
 }
 
 .service-card__icon {

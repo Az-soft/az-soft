@@ -225,32 +225,41 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`service-card group relative bg-card rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-border hover:border-primary/50 ${isInView ? 'in-view' : ''}`}
+                className="service-card"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="service-card__content relative z-10">
-                  <div className="mb-6">
-                    <div className="service-card__icon w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center transition-transform duration-300">
-                      <service.icon className="h-6 w-6 text-primary" />
+                <div className="service-card__inner">
+                  {/* Front of the card */}
+                  <div className="service-card__front">
+                    <div className="mb-8">
+                      <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
+                        <service.icon className="h-8 w-8 text-primary" />
+                      </div>
                     </div>
+                    <h3 className="service-card__title px-4">{service.title}</h3>
                   </div>
-                  <h3 className="service-card__title text-xl font-semibold mb-4">{service.title}</h3>
-                  <p className="service-card__description text-muted-foreground mb-6">{service.description}</p>
-                  <ul className="service-card__features space-y-3 mb-8">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-start space-x-2">
-                        <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="service-card__button">
-                    <Button asChild size="lg" className="gradient-border-btn w-full">
-                      <Link href="#contact">
-                        Обсудить проект
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+
+                  {/* Back of the card */}
+                  <div className="service-card__back">
+                    <div className="w-full">
+                      <h3 className="service-card__title mb-4">{service.title}</h3>
+                      <p className="service-card__description">{service.description}</p>
+                      <ul className="service-card__features">
+                        {service.features.map((feature) => (
+                          <li key={feature} className="flex items-start space-x-2">
+                            <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="service-card__button mt-6">
+                        <Button asChild size="lg" className="gradient-border-btn w-full">
+                          <Link href="#contact">
+                            Обсудить проект
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
