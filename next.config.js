@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/az-soft',
-  assetPrefix: '/az-soft/',
+  trailingSlash: true,
   images: {
     unoptimized: true
-  },
-  trailingSlash: true
-}
+  }
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig; 
