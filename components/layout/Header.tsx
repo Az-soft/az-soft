@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Главная', href: '/' },
@@ -17,18 +18,52 @@ const navigation = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [logo, setLogo] = useState('/logo-dark-theme.png')
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+    setLogo(theme === 'dark' ? '/logo-white-theme.png' : '/logo-dark-theme.png')
+  }, [theme])
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('#')) {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        setMobileMenuOpen(false)
+      }
+    }
+  }
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === href
+    }
+    if (href.startsWith('#')) {
+      return false
+    }
+    return pathname === href
+  }
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4">
+      <nav className="container mx-auto px-4 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold">AZ Soft</span>
+          <div className="relative w-56 h-24">
+            <Image
+              src={logo}
+              alt="AZ Soft Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
         </Link>
 
         <div className="hidden md:flex md:items-center md:space-x-8">
@@ -36,8 +71,14 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
+              onClick={(e) => {
+                if (item.href.startsWith('#')) {
+                  e.preventDefault()
+                  handleNavigation(item.href)
+                }
+              }}
               className={`nav-link text-sm font-medium ${
-                pathname === item.href ? 'text-primary' : 'text-foreground/60'
+                isActive(item.href) ? 'text-primary' : 'text-foreground/60'
               }`}
             >
               {item.name}
@@ -89,12 +130,19 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
+              onClick={(e) => {
+                if (item.href.startsWith('#')) {
+                  e.preventDefault()
+                  handleNavigation(item.href)
+                } else {
+                  setMobileMenuOpen(false)
+                }
+              }}
               className={`nav-link block rounded-md px-3 py-2 text-base font-medium ${
-                pathname === item.href
+                isActive(item.href)
                   ? 'bg-accent text-accent-foreground'
                   : 'text-foreground/60 hover:bg-accent/50 hover:text-accent-foreground'
               }`}
-              onClick={() => setMobileMenuOpen(false)}
             >
               {item.name}
             </Link>

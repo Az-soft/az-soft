@@ -143,14 +143,14 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email',
-    content: 'info@azsoft.ru',
-    href: 'mailto:info@azsoft.ru',
+    content: 'info@az-soft.kz',
+    href: 'mailto:info@az-soft.kz',
   },
   {
     icon: Phone,
     title: 'Телефон',
-    content: '+7 (XXX) XXX-XX-XX',
-    href: 'tel:+7XXXXXXXXXX',
+    content: '+7 (771) 277-37-73',
+    href: 'tel:+77712773773',
   },
   {
     icon: MapPin,
@@ -200,7 +200,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-background">
+      <section id="services" className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

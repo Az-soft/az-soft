@@ -1,5 +1,9 @@
+'use client'
+
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 const navigation = [
   { name: 'Главная', href: '/' },
@@ -11,13 +15,13 @@ const navigation = [
 const contactInfo = [
   {
     icon: Mail,
-    text: 'info@azsoft.ru',
-    href: 'mailto:info@azsoft.ru',
+    text: 'info@az-soft.kz',
+    href: 'mailto:info@az-soft.kz',
   },
   {
     icon: Phone,
-    text: '+7 (XXX) XXX-XX-XX',
-    href: 'tel:+7XXXXXXXXXX',
+    text: '+7 (771) 277-37-73',
+    href: 'tel:+77712773773',
   },
   {
     icon: MapPin,
@@ -26,45 +30,28 @@ const contactInfo = [
   },
 ]
 
-const socialLinks = [
-  {
-    icon: Github,
-    href: 'https://github.com',
-    label: 'GitHub',
-  },
-  {
-    icon: Linkedin,
-    href: 'https://linkedin.com',
-    label: 'LinkedIn',
-  },
-]
-
 export default function Footer() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <footer className="bg-background border-t">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Company Info - Left */}
           <div className="flex flex-col gap-6 md:justify-self-start">
-            <h3 className="text-xl font-bold">AZ Soft</h3>
             <p className="text-muted-foreground">
               Профессиональные IT-решения для вашего бизнеса. Разработка веб-приложений,
               мобильных приложений, чат-ботов, CRM-систем, UI/UX дизайн и IT-консалтинг.
             </p>
-            <div className="flex gap-4">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span className="sr-only">{item.label}</span>
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Navigation - Center */}
