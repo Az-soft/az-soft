@@ -1,11 +1,11 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 import { ArrowRight, Code, Smartphone, MessageSquare, Database, Layout, Users, Mail, Phone, MapPin, Clock, Award, Heart, Target } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 
 const services = [
   {
@@ -137,7 +137,6 @@ const contactInfo = [
 
 export default function Home() {
   const servicesRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(servicesRef, { once: true, margin: "-100px" })
 
   return (
     <div className="flex flex-col">

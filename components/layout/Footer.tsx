@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
-import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 const navigation = [
@@ -39,7 +38,6 @@ const contactInfo = [
 ]
 
 export default function Footer() {
-  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
