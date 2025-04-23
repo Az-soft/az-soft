@@ -11,7 +11,7 @@ import Image from 'next/image'
 const navigation = [
   { name: 'Главная', href: '/' },
   { name: 'Услуги', href: '/#services' },
-  { name: 'О компании', href: '/#about' },
+  { name: 'О компании', href: '/#values' },
   { name: 'Контакты', href: '/#contact' },
 ]
 

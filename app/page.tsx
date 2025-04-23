@@ -82,13 +82,6 @@ const services = [
   },
 ]
 
-const stats = [
-  { label: 'Лет на рынке', value: '5+' },
-  { label: 'Завершенных проектов', value: '50+' },
-  { label: 'Специалистов в команде', value: '20+' },
-  { label: 'Довольных клиентов', value: '100+' },
-]
-
 const values = [
   {
     title: 'Профессионализм',
@@ -116,29 +109,6 @@ const values = [
   },
 ]
 
-const team = [
-  {
-    name: 'Алексей Иванов',
-    role: 'CEO & Основатель',
-    image: '/team/alexey.jpg',
-  },
-  {
-    name: 'Мария Петрова',
-    role: 'Технический директор',
-    image: '/team/maria.jpg',
-  },
-  {
-    name: 'Дмитрий Сидоров',
-    role: 'Lead Developer',
-    image: '/team/dmitry.jpg',
-  },
-  {
-    name: 'Елена Козлова',
-    role: 'UI/UX Designer',
-    image: '/team/elena.jpg',
-  },
-]
-
 const contactInfo = [
   {
     icon: Mail,
@@ -155,7 +125,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Адрес',
-    content: 'г. Москва, ул. Примерная, д. 123',
+    content: 'г. Астана, пр. Тауелсиздик, 25',
     href: 'https://maps.google.com',
   },
   {
@@ -251,14 +221,6 @@ export default function Home() {
                           </li>
                         ))}
                       </ul>
-                      <div className="service-card__button mt-6">
-                        <Button asChild size="lg" className="gradient-border-btn w-full">
-                          <Link href="#contact">
-                            Обсудить проект
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -268,8 +230,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-24">
+      {/* Values Section */}
+      <section id="values" className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -278,78 +240,31 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              О компании
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+              Наши ценности
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-            AZ Soft — это молодая и амбициозная команда, объединённая стремлением создавать
-            современные IT-решения. Мы строим партнёрские отношения с клиентами и подходим к каждому
-            проекту с максимальной вовлечённостью и вниманием к деталям.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Мы строим долгосрочные отношения с клиентами на основе доверия и качества
             </p>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24"
-          >
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {values.map((value) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                  <value.icon className="h-8 w-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
+              </motion.div>
             ))}
-          </motion.div>
-
-          {/* Values */}
-          <div className="mb-24">
-            <h2 className="text-3xl font-bold text-center mb-12">Наши ценности</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {values.map((value, index) => (
-                <motion.div
-                  key={value.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-background rounded-lg p-6 shadow-sm"
-                >
-                  <div className="rounded-full bg-primary/10 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                    <value.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground">{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Team */}
-          <div className="mb-24">
-            <h2 className="text-3xl font-bold text-center mb-12">Наша команда</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {team.map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-32 h-32 rounded-full bg-muted mx-auto mb-4 overflow-hidden">
-                    <div className="w-full h-full bg-primary/10 flex items-center justify-center">
-                      <Users className="h-12 w-12 text-primary/50" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-muted-foreground">{member.role}</p>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -364,50 +279,47 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
               Свяжитесь с нами
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Готовы начать проект или есть вопросы? Заполните форму ниже, и мы свяжемся
-              с вами в ближайшее время.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Готовы обсудить ваш проект? Оставьте заявку, и мы свяжемся с вами в ближайшее время.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-2xl font-semibold mb-8">Контактная информация</h2>
-              <div className="space-y-6">
-                {contactInfo.map((item) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                {contactInfo.map((info) => (
                   <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    key={info.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                     className="flex items-start space-x-4"
                   >
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <item.icon className="h-5 w-5 text-primary" />
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <info.icon className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-medium">{item.title}</h3>
-                      {item.href ? (
+                      <h3 className="font-medium mb-1">{info.title}</h3>
+                      {info.href ? (
                         <a
-                          href={item.href}
+                          href={info.href}
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
-                          {item.content}
+                          {info.content}
                         </a>
                       ) : (
-                        <p className="text-muted-foreground">{item.content}</p>
+                        <p className="text-muted-foreground">{info.content}</p>
                       )}
                     </div>
                   </motion.div>
                 ))}
               </div>
             </div>
-
             <div>
-              <h2 className="text-2xl font-semibold mb-8">Форма обратной связи</h2>
               <ContactForm />
             </div>
           </div>

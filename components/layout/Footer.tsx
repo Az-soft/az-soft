@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
@@ -15,18 +15,26 @@ const navigation = [
 const contactInfo = [
   {
     icon: Mail,
-    text: 'info@az-soft.kz',
+    title: 'Email',
+    content: 'info@az-soft.kz',
     href: 'mailto:info@az-soft.kz',
   },
   {
     icon: Phone,
-    text: '+7 (771) 277-37-73',
+    title: 'Телефон',
+    content: '+7 (771) 277-37-73',
     href: 'tel:+77712773773',
   },
   {
     icon: MapPin,
-    text: 'г. Москва, ул. Примерная, д. 123',
+    title: 'Адрес',
+    content: 'г. Астана, пр. Тауелсиздик, 25',
     href: 'https://maps.google.com',
+  },
+  {
+    icon: Clock,
+    title: 'Часы работы',
+    content: 'Пн-Пт: 9:00 - 18:00',
   },
 ]
 
@@ -37,6 +45,19 @@ export default function Footer() {
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith('#')) {
+      const id = href.substring(1) // Remove the # symbol
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }
+  }
 
   if (!mounted) {
     return null
@@ -62,6 +83,12 @@ export default function Footer() {
                 <Link
                   key={item.name}
                   href={item.href}
+                  onClick={(e) => {
+                    if (item.href.startsWith('#')) {
+                      e.preventDefault()
+                      handleNavigation(item.href)
+                    }
+                  }}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.name}
@@ -74,15 +101,23 @@ export default function Footer() {
           <div className="flex flex-col gap-6 md:justify-self-end">
             <h3 className="text-lg font-semibold">Контакты</h3>
             <div className="flex flex-col gap-3">
-              {contactInfo.map((item) => (
-                <a
-                  key={item.text}
-                  href={item.href}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.text}</span>
-                </a>
+              {contactInfo.map((item, index) => (
+                <div key={index} className="flex items-center space-x-4">
+                  <item.icon className="h-6 w-6 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium">{item.title}</p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-sm text-muted-foreground hover:text-primary"
+                      >
+                        {item.content}
+                      </a>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{item.content}</p>
+                    )}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
