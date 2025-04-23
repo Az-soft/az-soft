@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/az-soft' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/az-soft/' : '',
+  basePath: '/az-soft',
+  assetPrefix: '/az-soft/',
   images: {
     unoptimized: true
   },
