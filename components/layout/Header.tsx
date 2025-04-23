@@ -29,9 +29,13 @@ export default function Header() {
 
   const handleNavigation = (href: string) => {
     if (href.startsWith('#')) {
-      const element = document.querySelector(href)
+      const id = href.substring(1) // Remove the # symbol
+      const element = document.getElementById(id)
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
         setMobileMenuOpen(false)
       }
     }
