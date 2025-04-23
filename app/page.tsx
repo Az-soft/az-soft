@@ -119,8 +119,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Телефон',
-    content: '+7 (771) 277-37-73',
-    href: 'tel:+77712773773',
+    content: '+7 (777) 127-73-73',
+    href: 'tel:+77771277373',
   },
   {
     icon: MapPin,

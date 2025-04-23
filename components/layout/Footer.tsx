@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 
 const navigation = [
   { name: 'Главная', href: '/' },
-  { name: 'О компании', href: '/about' },
-  { name: 'Портфолио', href: '/portfolio' },
-  { name: 'Контакты', href: '/contact' },
+  { name: 'Услуги', href: '/#services' },
+  { name: 'О компании', href: '/#values' },
+  { name: 'Контакты', href: '/#contact' },
 ]
 
 const contactInfo = [
@@ -21,8 +21,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Телефон',
-    content: '+7 (771) 277-37-73',
-    href: 'tel:+77712773773',
+    content: '+7 (777) 127-73-73',
+    href: 'tel:+77771277373',
   },
   {
     icon: MapPin,
