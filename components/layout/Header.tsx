@@ -57,17 +57,21 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto px-4 h-24 flex items-center justify-between">
+      <nav className="container mx-auto px-0 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <div className="relative w-56 h-24">
+          <motion.div 
+            className="relative w-48 h-20 md:w-56 md:h-24 lg:w-64 lg:h-28 group"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
+          >
             <Image
               src={logo}
               alt="AZ Soft Logo"
               fill
-              className="object-contain"
+              className="object-contain transition-opacity duration-200 group-hover:opacity-80"
               priority
             />
-          </div>
+          </motion.div>
         </Link>
 
         <div className="hidden md:flex md:items-center md:space-x-8">

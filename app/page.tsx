@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/Button'
 import { ArrowRight, Code, Smartphone, MessageSquare, Database, Layout, Users, Mail, Phone, MapPin, Clock, Award, Heart, Target } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
 import { useRef } from 'react'
+import { useTheme } from 'next-themes'
+import ThemeLogo from './components/ThemeLogo'
 
 const services = [
   {
@@ -137,6 +139,7 @@ const contactInfo = [
 
 export default function Home() {
   const servicesRef = useRef<HTMLDivElement>(null)
+  const { theme } = useTheme()
 
   return (
     <div className="flex flex-col">
@@ -147,22 +150,27 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-8"
           >
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              IT-решения для вашего бизнеса
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground">
-              AZ Soft - профессиональная IT-компания, предоставляющая полный спектр услуг
-              по разработке программного обеспечения, дизайну и консалтингу.
-            </p>
-            <div className="mt-10 flex gap-4">
-              <Button asChild size="lg" className="gradient-border-btn">
-                <Link href="#contact">
-                  Связаться с нами
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+            <div className="flex-1 text-center lg:text-left">
+              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                IT-решения для вашего бизнеса
+              </h1>
+              <p className="mt-6 text-lg text-muted-foreground">
+                AZ Soft - профессиональная IT-компания, предоставляющая полный спектр услуг
+                по разработке программного обеспечения, дизайну и консалтингу.
+              </p>
+              <div className="mt-10 flex gap-4 justify-center lg:justify-start">
+                <Button asChild size="lg" className="gradient-border-btn">
+                  <Link href="#contact">
+                    Связаться с нами
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+            <div className="flex-1 flex justify-center w-full lg:w-auto">
+              <ThemeLogo />
             </div>
           </motion.div>
         </div>
