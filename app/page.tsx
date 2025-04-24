@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/Button'
 import { ArrowRight, Code, Smartphone, MessageSquare, Database, Layout, Users, Mail, Phone, MapPin, Clock, Award, Heart, Target } from 'lucide-react'
 import ContactForm from '@/components/ContactForm'
 import { useRef } from 'react'
-import { useTheme } from 'next-themes'
 import ThemeLogo from './components/ThemeLogo'
 
 const services = [
@@ -139,7 +138,6 @@ const contactInfo = [
 
 export default function Home() {
   const servicesRef = useRef<HTMLDivElement>(null)
-  const { theme } = useTheme()
 
   return (
     <div className="flex flex-col">
